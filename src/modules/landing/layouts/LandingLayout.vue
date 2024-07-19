@@ -1,30 +1,40 @@
 <template>
   <div class="flex flex-col h-screen">
     <!-- Header -->
-    <header class="flex items-center h-14 px-4 border-b border-gray-300 sm:h-16 md:px-6 lg:px-8">
+    <header
+      class="flex items-center h-14 px-4 border-b border-gray-300 sm:h-16 md:px-6 lg:px-8 fixed top-0 left-0 right-0 z-10"
+    >
       <div>
         <a class="flex items-center gap-2 font-semibold" href="#">
           <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="40" height="40" />
         </a>
       </div>
-      <nav class="ml-auto space-x-4 flex flex-col items-end h-10 sm:space-x-6">
+      <nav class="flex flex-col ml-auto space-x-4 items-end h-10 sm:space-x-6">
         <div class="space-x-4">
-          <RouterLink to="/"> Home </RouterLink>
-          <RouterLink :to="{ name: 'features' }"> Features </RouterLink>
-          <RouterLink to="/pricing"> Pricing </RouterLink>
+          <RouterLink :to="{ name: 'home' }"> Home </RouterLink>
+          <!-- exact-active-class="underline font-semibold" -->
+          <RouterLink to="/features"> Features </RouterLink>
+          <RouterLink :to="'/pricing'"> Pricing </RouterLink>
           <RouterLink to="/contact"> Contact </RouterLink>
         </div>
+
         <div class="space-x-4">
+          <RouterLink to="/pokemon/1"> Pokémons </RouterLink>
           <RouterLink to="/auth"> Login </RouterLink>
-          <RouterLink to="/pokemon/1"> Pokemon </RouterLink>
         </div>
       </nav>
     </header>
     <!-- Fin Header -->
 
     <!-- Main -->
+
     <main class="flex-1 flex items-center justify-center">
-      <RouterView />
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
+      <!-- <RouterView /> -->
     </main>
     <!-- Fin Main -->
 

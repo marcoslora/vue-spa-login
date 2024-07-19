@@ -1,6 +1,4 @@
 <template>
-  <!-- component -->
-
   <div class="flex justify-center items-center">
     <div class="">
       <div class="text-center font-semibold">
